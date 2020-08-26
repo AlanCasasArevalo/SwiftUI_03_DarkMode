@@ -9,8 +9,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Con esta linea hacemos que la aplicacion siempre este en el light mode, imposibilitando asi el dark mode
-        let contentView = ContentView().environment(\.colorScheme, .light)
+        // let contentView = ContentView().environment(\.colorScheme, .light)
 
+        let contentView = ContentView()
+        
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             window.rootViewController = UIHostingController(rootView: contentView)
