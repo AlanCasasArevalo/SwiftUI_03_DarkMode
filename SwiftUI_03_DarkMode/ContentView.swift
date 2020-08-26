@@ -4,7 +4,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var mode: ColorScheme = .light
-    @State private var change: Bool = true
+    @State private var change: Bool!
 
     var body: some View {
         NavigationView {
@@ -21,13 +21,15 @@ struct ContentView: View {
                 
                 Button(action: {
                     self.change.toggle()
-                    self.changeMode()
+                    UserDefaults.standard.set(self.change, forKey: "colorSchemaMode")
+                    self.darkMode()
                 }) {
                     Text("Cambiar modo")
                 }
                 
             }
             .navigationBarTitle("User Defaults")
+        .onAppear(perform: darkMode)
 
         }
         .environment(\.colorScheme, self.mode)
@@ -35,11 +37,20 @@ struct ContentView: View {
 }
 
 extension ContentView {
-    func changeMode () {
-        if self.change {
-            self.mode = .light
+    func darkMode () {
+        if (UserDefaults.standard.object(forKey: "colorSchemaMode") != nil) {
+            let lightMode = UserDefaults.standard.bool(forKey: "colorSchemaMode")
+            
+            if lightMode {
+                self.mode = .light
+                self.change = true
+            } else {
+                self.mode = .dark
+                self.change = false
+            }
         } else {
-            self.mode = .dark
+            self.change = true
+            self.mode = .light
         }
     }
 }
