@@ -1,10 +1,4 @@
-//
-//  AppDelegate.swift
-//  SwiftUI_03_DarkMode
-//
-//  Created by Everis on 26/08/2020.
-//  Copyright © 2020 Alan. All rights reserved.
-//
+
 
 import UIKit
 
